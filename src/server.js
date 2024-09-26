@@ -1,13 +1,16 @@
 import http from 'node:http'
+import routesApp from './routes.js'
 
 const server = http.createServer((req, res) => {
     const { method, url } = req
 
-    if(method === 'GET' && url === "/task"){
-        return res.end('application.on')
+    const route = routesApp.find(route => route.method === method && route.url === url)
+
+    if (route){
+        route.handler(req, res)
     }
 
-
+    return res.end('rota não encontrada')
 })
 
 server
