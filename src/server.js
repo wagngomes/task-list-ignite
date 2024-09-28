@@ -6,8 +6,12 @@ const server = http.createServer((req, res) => {
 
     const route = routesApp.find(route => route.method === method && route.url === url)
 
+    console.log(route)
+  
+
     if (route){
-        route.handler(req, res)
+
+       return route.handler(req, res)
     }
 
     return res.end('rota não encontrada')
