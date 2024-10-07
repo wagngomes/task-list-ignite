@@ -1,15 +1,33 @@
+import { Database } from "./database.js"
+import { randomUUID } from 'node:crypto'
+
+const database = new Database()
+
 const routesApp = [
     {
         method: 'POST',
-        url: '/task',
+        path: '/task',
         handler: (req, res) => {
-            return res.end('application.on')
+
+           const { title, description, completed_at, created_at, updated_at } = req.body
+
+           const data = {
+            id: randomUUID(),
+            title,
+            description,
+            completed_at,
+            created_at,
+            updated_at
+           }
+            console.log(data)
+            //database.insertTask(data)
+            return data
         }
     },
 
     {
         method: 'GET',
-        url: '/task',
+        path: '/task',
         handler: (req, res) => {
             return res.end('application.on')
         }
@@ -17,7 +35,7 @@ const routesApp = [
 
     {
         method: 'PUT',
-        url: '/task/:id',
+        path: '/task/:id',
         handler: (req, res) => {
             return res.end('application.on')
         }
@@ -25,7 +43,7 @@ const routesApp = [
 
     {
         method: 'DELETE',
-        url: '/task/:id',
+        path: '/task/:id',
         handler: (req, res) => {
             return res.end('application.on')
         }
@@ -33,7 +51,7 @@ const routesApp = [
 
     {
         method: 'PATH',
-        url: '/task/:id/complete',
+        path: '/task/:id/complete',
         handler: (req, res) => {
             return res.end('application.on')
         }
