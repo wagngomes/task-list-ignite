@@ -2,22 +2,21 @@ import Database from "./database.js"
 
 const database = new Database()
 
-const routesApp = [
+export const routesApp = [
     {
         method: 'POST',
         url: '/task',
         handler: (req, res) => {
 
-            const { title, description } = req.body
+            const { description } = req.body
 
             const data = {
-                title,
                 description
             }
             console.log(data)
 
-            const newTask = database.createTask(data)
-            return newTask
+            //const newTask = database.createTask(data)
+            return res.writeHead(201).end()
         }
     },
 
@@ -55,5 +54,3 @@ const routesApp = [
 
 
 ]
-
-export default routesApp
